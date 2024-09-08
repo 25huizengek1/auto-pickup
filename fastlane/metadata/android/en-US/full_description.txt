@@ -1,0 +1,8 @@
+<b>Features:</b>
+
+* Lift to answer
+* Answer when connectivity Bluetooth device is connected
+* Vibrate/beep on answer
+* Quick settings toggle
+* Multi-language support
+* Material 3

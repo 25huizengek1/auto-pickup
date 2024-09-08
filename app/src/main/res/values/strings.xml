@@ -1,0 +1,33 @@
+<resources>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme">Theme</string>
+    <string name="dynamic_theme">Dynamic theme</string>
+    <string name="dynamic_theme_description">Material 3 Dynamic theme</string>
+    <string name="answering_calls">Answering calls</string>
+    <string name="answer_phone_to_ear">Answer by holding your phone to your ear</string>
+    <string name="other_settings">Other settings</string>
+    <string name="vibrate">Vibrate on incoming calls</string>
+    <string name="language">Language</string>
+    <string name="default_text">Default</string>
+    <string name="listening">Listening to phone calls…</string>
+    <string name="permissions">Permissions</string>
+    <string name="permission_granted">Permission granted</string>
+    <string name="permission_not_granted">Permission not yet granted</string>
+    <string name="tap_to_grant">Tap to grant</string>
+    <string name="answer_bluetooth">Answer when connected with Bluetooth</string>
+    <string name="ignore_battery_optimizations">Ignore battery optimizations</string>
+    <string name="ignoring_battery_optimizations">Restriction already lifted</string>
+    <string name="ignore_battery_optimizations_action">Disable background restrictions</string>
+    <string name="no_battery_optimization_settings_found">Couldn\'t find battery optimization settings, please whitelist ViTune manually</string>
+    <string name="testing">Testing</string>
+    <string name="foreground_service">Service notifications</string>
+    <string name="countdown">Count down before accepting calls</string>
+    <string name="enable">Pick up the phone automatically</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="add_to_quick_settings">Add to quick settings</string>
+    <string name="add_to_quick_settings_description">Adds a toggle/tile to your quick settings menu that can enable/disable this app</string>
+    <string name="add_to_quick_settings_error">Already added tile to system bar</string>
+</resources>
