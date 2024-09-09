@@ -31,4 +31,6 @@
     <string name="add_to_quick_settings">Toevoegen aan snelle instellingen</string>
     <string name="add_to_quick_settings_description">Voegt een schakelaar die deze app aan/uit kan zetten toe aan de snelle instellingen</string>
     <string name="add_to_quick_settings_error">Al toegevoegd</string>
+    <string name="tile_read_only">Schakelaar alleen-lezen in vergrendelscherm</string>
+    <string name="tile_read_only_description">De telefoon moet eerst worden ontgrendeld voordat het klikken op de schakelaar effect heeft</string>
 </resources>

@@ -30,4 +30,6 @@
     <string name="add_to_quick_settings">Add to quick settings</string>
     <string name="add_to_quick_settings_description">Adds a toggle/tile to your quick settings menu that can enable/disable this app</string>
     <string name="add_to_quick_settings_error">Already added tile to system bar</string>
+    <string name="tile_read_only">Tile read-only in lock screen</string>
+    <string name="tile_read_only_description">The phone needs to be unlocked before pressing the tile</string>
 </resources>

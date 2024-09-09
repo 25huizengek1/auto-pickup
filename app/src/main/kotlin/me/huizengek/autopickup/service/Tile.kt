@@ -14,13 +14,16 @@ import androidx.core.content.getSystemService
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import me.huizengek.autopickup.R
 import me.huizengek.autopickup.preferences.PhonePreferences
+import me.huizengek.autopickup.preferences.TilePreferences
 import me.huizengek.autopickup.util.isAtLeastAndroid10
 import me.huizengek.autopickup.util.isAtLeastAndroid11
 import java.util.concurrent.Executors
@@ -31,6 +34,10 @@ import kotlin.coroutines.suspendCoroutine
 class StatusTileService : TileService() {
     private val flow = PhonePreferences.enabledProperty.stateFlow.asSharedFlow()
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
+
+    @get:Synchronized
+    @set:Synchronized
+    private var job: Job? = null
 
     companion object {
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -65,7 +72,26 @@ class StatusTileService : TileService() {
     override fun onClick() {
         super.onClick()
 
-        PhonePreferences.enabled = !PhonePreferences.enabled
+        job?.cancel()
+        job = coroutineScope.launch {
+            if (TilePreferences.shouldUnlock) awaitUnlockOrSuspend()
+            PhonePreferences.enabled = !PhonePreferences.enabled
+        }
+    }
+}
+
+suspend fun TileService.awaitUnlockOrSuspend() = suspendCancellableCoroutine { continuation ->
+    var shouldResume = true
+
+    unlockAndRun {
+        if (!shouldResume) return@unlockAndRun
+
+        shouldResume = false
+        continuation.resume(Unit)
+    }
+
+    continuation.invokeOnCancellation {
+        shouldResume = false
     }
 }
 

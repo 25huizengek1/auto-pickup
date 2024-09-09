@@ -48,6 +48,7 @@ import me.huizengek.autopickup.LocalListenerServiceBinder
 import me.huizengek.autopickup.R
 import me.huizengek.autopickup.preferences.PhonePreferences
 import me.huizengek.autopickup.preferences.ThemePreferences
+import me.huizengek.autopickup.preferences.TilePreferences
 import me.huizengek.autopickup.service.AddTileServiceResult
 import me.huizengek.autopickup.service.ListenerService
 import me.huizengek.autopickup.service.StatusTileService
@@ -209,16 +210,25 @@ fun SettingsTab(modifier: Modifier = Modifier) = Column(
             setState = { PhonePreferences.countdown = it }
         )
 
-        if (isAtLeastAndroid13) SettingsEntry(
-            title = stringResource(R.string.add_to_quick_settings),
-            description = stringResource(R.string.add_to_quick_settings_description),
-            onClick = {
-                coroutineScope.launch {
-                    if (StatusTileService.requestAddService(context) == AddTileServiceResult.AlreadyAdded)
-                        context.toast(context.getString(R.string.add_to_quick_settings_error))
+        if (isAtLeastAndroid13) {
+            SettingsEntry(
+                title = stringResource(R.string.add_to_quick_settings),
+                description = stringResource(R.string.add_to_quick_settings_description),
+                onClick = {
+                    coroutineScope.launch {
+                        if (StatusTileService.requestAddService(context) == AddTileServiceResult.AlreadyAdded)
+                            context.toast(context.getString(R.string.add_to_quick_settings_error))
+                    }
                 }
-            }
-        )
+            )
+
+            SwitchSettingsEntry(
+                title = stringResource(R.string.tile_read_only),
+                description = stringResource(R.string.tile_read_only_description),
+                state = TilePreferences.shouldUnlock,
+                setState = { TilePreferences.shouldUnlock = it }
+            )
+        }
     }
 
     SettingsGroup(
