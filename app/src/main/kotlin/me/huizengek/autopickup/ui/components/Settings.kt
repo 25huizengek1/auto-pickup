@@ -109,7 +109,10 @@ fun SettingsEntry(
         modifier = modifier
             .fillMaxWidth()
             .alpha(animatedAlpha)
-            .let { if (onClick == null) it else it.clickable(onClick = onClick) }
+            .let {
+                if (onClick == null || !(group.enabled && enabled)) it
+                else it.clickable(onClick = onClick)
+            }
     )
 }
 
